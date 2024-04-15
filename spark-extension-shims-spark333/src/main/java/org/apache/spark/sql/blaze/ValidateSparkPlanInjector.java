@@ -26,7 +26,10 @@ import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.pool.TypePool;
 
 public class ValidateSparkPlanInjector {
-    public static void inject() {
+    static volatile boolean injected = false;
+    public static synchronized void inject() {
+        if (injected) return;
+        injected = true;
         ByteBuddyAgent.install();
         TypeDescription typeDescription = TypePool.Default.ofSystemLoader()
                 .describe("org.apache.spark.sql.execution.adaptive.ValidateSparkPlan$")
