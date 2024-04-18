@@ -75,6 +75,7 @@ Blaze._
 SHIM=spark333 # or spark303
 MODE=release # or dev
 mvn package -P"${SHIM}" -P"${MODE}"
+RUSTFLAGS="-C target-cpu=native" mvn package -Pspark333 -Prelease
 ```
 
 After the build is finished, a fat Jar package that contains all the dependencies will be generated in the `target`

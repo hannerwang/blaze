@@ -245,8 +245,8 @@ impl ExecutionPlan for ParquetExec {
             parquet_file_reader_factory: Arc::new(FsReaderFactory::new(fs_provider)),
             pushdown_filters: false, // still buggy
             reorder_filters: false,
-            enable_page_index: false,
-            enable_bloom_filter: false,
+            enable_page_index: true,
+            enable_bloom_filter: true,
         };
 
         let baseline_metrics = BaselineMetrics::new(&self.metrics, partition_index);
